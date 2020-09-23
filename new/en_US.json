@@ -1,0 +1,4 @@
+{
+  "newKey.legacyValue": "This is a legacy string and will have a translation",
+  "newKey.newValue": "This is a new string and will need to be translated"
+}
