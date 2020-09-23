@@ -82,7 +82,8 @@ fs.readdir(legacyFolder, (err, files) => {
       if (newKey) {
         generated[legacyKeyToNewKeyMap[row.key]] = row.value;
       } else {
-        generated[row.key] = row.value;
+        // TODO: What do we do with legacy key:strings that don't match a pwa studio string?
+        // generated[row.key] = row.value;
       }
     });
 
