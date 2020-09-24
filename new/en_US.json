@@ -42,5 +42,6 @@
   "accountMenu.communicationsLink": "Communications",
   "accountMenu.accountInfoLink": "Account Information",
   "wishlistItem.addToCart": "Add to Cart",
+  "otherComponent.addToCart": "Add to Cart",
   "wishlistItem.addToCartError": "Something went wrong. Please refresh and try again."
 }

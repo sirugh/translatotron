@@ -94,3 +94,21 @@ and `nl_NL_missed.json`, which are PWA Studio keys/strings that did not match a 
   "wishlistItem.addToCartError": "Something went wrong. Please refresh and try again."
 }
 ```
+
+## Notes
+
+Duplicate strings in PWA Studio are also handled:
+
+```js
+// original/en_US.json
+{
+  "wishlistItem.addToCart": "Add to Cart",
+  "otherComponent.addToCart": "Add to Cart"
+}
+
+// nl_NL.json
+{
+  "wishlistItem.addToCart": "In Winkelwagen",
+  "otherComponent.addToCart": "In Winkelwagen",
+}
+```

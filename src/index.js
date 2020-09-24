@@ -31,28 +31,30 @@ parse(fs.readFileSync(legacyFilePath, "utf8"), {
 // console.log(`${JSON.stringify(legacyTranslations, null, 2)}`);
 // console.log("------------------------------\n");
 
-// 3. Convert both to string:key map
+// 3. Convert both to string:[key] map
 const legacyStringtoKey = {};
 Object.keys(legacyTranslations).forEach((key) => {
-  // TODO: If a string can correlate to more than one key this will need to be an array.
-  // ie { key1: 'samevalue', key2: 'samevalue'}
-  legacyStringtoKey[legacyTranslations[key]] = key;
+  // ie { key1: 'samevalue', key2: 'samevalue'} => { 'samevalue': ['key1', 'key2'] }
+  legacyStringtoKey[legacyTranslations[key]] =
+    legacyStringtoKey[legacyTranslations[key]] || [];
+  legacyStringtoKey[legacyTranslations[key]].push(key);
 });
 
 const newStringToKey = {};
 Object.keys(newTranslations).forEach((key) => {
   // TODO: If a string can correlate to more than one key this will need to be an array.
-  // ie { key1: 'samevalue', key2: 'samevalue'}
-  newStringToKey[newTranslations[key]] = key;
+  // ie { key1: 'samevalue', key2: 'samevalue'} => { 'samevalue': ['key1', 'key2'] }
+  newStringToKey[newTranslations[key]] =
+    newStringToKey[newTranslations[key]] || [];
+  newStringToKey[newTranslations[key]].push(key);
 });
 
 // 4. Generate map of legacy keys to new keys.
 const legacyKeyToNewKeyMap = {};
 Object.keys(newStringToKey).forEach((key) => {
-  const value = legacyStringtoKey[key];
-  if (value) {
+  const valueArray = (legacyStringtoKey[key] || []).map((value) => {
     legacyKeyToNewKeyMap[value] = newStringToKey[key];
-  }
+  });
 });
 console.log("\n---- LEGACY KEY:NEW KEY MAP ----");
 console.log(JSON.stringify(legacyKeyToNewKeyMap, null, 2));
@@ -84,12 +86,13 @@ fs.readdir(legacyFolder, (err, files) => {
     // Iterate over the legacy csv and add each to the new i18n object using
     // the new key if one was found.
     legacyCsvParsed.forEach((row) => {
-      const newKey = legacyKeyToNewKeyMap[row.key];
-      if (newKey) {
-        generated[legacyKeyToNewKeyMap[row.key]] = row.value;
+      const newKeys = legacyKeyToNewKeyMap[row.key];
+      if (newKeys) {
+        newKeys.map((newKey) => {
+          generated[newKey] = row.value;
+        });
       } else {
         // TODO: What do we do with legacy key:strings that don't match a pwa studio string?
-        // generated[row.key] = row.value;
       }
     });
 
