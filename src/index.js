@@ -32,9 +32,9 @@ parse(fs.readFileSync(legacyFilePath, "utf8"), {
 // console.log("------------------------------\n");
 
 // 3. Convert both to string:[key] map
+// ie { key1: 'samevalue', key2: 'samevalue'} => { 'samevalue': ['key1', 'key2'] }
 const legacyStringtoKey = {};
 Object.keys(legacyTranslations).forEach((key) => {
-  // ie { key1: 'samevalue', key2: 'samevalue'} => { 'samevalue': ['key1', 'key2'] }
   legacyStringtoKey[legacyTranslations[key]] =
     legacyStringtoKey[legacyTranslations[key]] || [];
   legacyStringtoKey[legacyTranslations[key]].push(key);
@@ -42,8 +42,6 @@ Object.keys(legacyTranslations).forEach((key) => {
 
 const newStringToKey = {};
 Object.keys(newTranslations).forEach((key) => {
-  // TODO: If a string can correlate to more than one key this will need to be an array.
-  // ie { key1: 'samevalue', key2: 'samevalue'} => { 'samevalue': ['key1', 'key2'] }
   newStringToKey[newTranslations[key]] =
     newStringToKey[newTranslations[key]] || [];
   newStringToKey[newTranslations[key]].push(key);
