@@ -34,3 +34,25 @@ The idea is to:
 ```
 
 See [related thread](https://github.com/magento/pwa-studio/issues/669#issuecomment-696782372)
+
+## Outcome
+
+After an initial pass, using [PWA Studio's i18n/en_US.json](https://github.com/magento/pwa-studio/blob/develop/packages/venia-ui/lib/i18n/en_US.json) and Magento's legacy [nl_NL.csv](https://github.com/magento-l10n/language-nl_NL/blob/master/nl_NL.csv) and [en_US.csv](https://github.com/magento-l10n/language-en_US/blob/master/en_US.csv):
+
+```json
+{
+  "wishlistItem.addToCart": "In Winkelwagen",
+  "accountMenu.accountInfoLink": "Accountgegevens",
+  "searchTrigger.label": "Zoek",
+  "Sign Out": "Uitloggen",
+  "accountMenu.communicationsLink": "Communicatie",
+  "accountTrigger.signIn": "Inloggen",
+  "Contact Us": "Neem contact met ons op",
+  "accountMenu.addressBookLink": "Adresboek",
+  "Order Status": "Bestelling Status",
+  "Returns": "Retouren",
+  "accountMenu.orderHistoryLink": "Bestelgeschiedenis",
+  "Copyright © 2013-present Magento, Inc. All rights reserved.": "Copyright © 2013-heden Magento. Alle rechten voorbehouden.",
+  "About Us": "Over ons"
+}
+```
