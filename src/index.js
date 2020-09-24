@@ -15,9 +15,9 @@ console.log(`Reading ${newFilePath}.`);
 
 const newTranslations = JSON.parse(fs.readFileSync(newFilePath, "utf8"));
 
-console.log("\n------ NEW TRANSLATIONS ------");
-console.log(`${JSON.stringify(newTranslations, null, 2)}`);
-console.log("------------------------------\n");
+// console.log("\n------ NEW TRANSLATIONS ------");
+// console.log(`${JSON.stringify(newTranslations, null, 2)}`);
+// console.log("------------------------------\n");
 
 // 2. Read legacy copy.
 console.log(`Reading ${legacyFilePath}.`);
@@ -27,9 +27,9 @@ parse(fs.readFileSync(legacyFilePath, "utf8"), {
   columns: ["key", "value"],
 }).forEach(({ key, value }) => (legacyTranslations[key] = value));
 
-console.log("\n---- LEGACY TRANSLATIONS ----");
-console.log(`${JSON.stringify(legacyTranslations, null, 2)}`);
-console.log("------------------------------\n");
+// console.log("\n---- LEGACY TRANSLATIONS ----");
+// console.log(`${JSON.stringify(legacyTranslations, null, 2)}`);
+// console.log("------------------------------\n");
 
 // 3. Convert both to string:key map
 const legacyStringtoKey = {};
@@ -49,15 +49,9 @@ Object.keys(newTranslations).forEach((key) => {
 // 4. Generate map of legacy keys to new keys.
 const legacyKeyToNewKeyMap = {};
 Object.keys(newStringToKey).forEach((key) => {
-  console.log(`Checking for legacy key for "${key}"...`);
   const value = legacyStringtoKey[key];
   if (value) {
-    console.log(
-      `  Found legacy key "${value}" with matching value as new key "${newStringToKey[key]}"`
-    );
     legacyKeyToNewKeyMap[value] = newStringToKey[key];
-  } else {
-    console.log("  No results.");
   }
 });
 console.log("\n---- LEGACY KEY:NEW KEY MAP ----");
@@ -99,10 +93,7 @@ fs.readdir(legacyFolder, (err, files) => {
       }
     });
 
-    // TODO: Should we also write new keys without translations to the object?
-    // Comment this out if you only want to see only new matching keys.
     const generatedKeys = Object.keys(generated);
-
     fs.writeFileSync(
       generatedFilePath,
       JSON.stringify(generated, null, 2),
