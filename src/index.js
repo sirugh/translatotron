@@ -3,17 +3,17 @@ const parse = require("csv-parse/lib/sync");
 const fs = require("fs");
 const path = require("path");
 
-const newFolder = "./new/";
+const copyFolder = "./copy/";
 const legacyFolder = "./legacy/";
 const generatedFolder = "./generated/";
 
-const newFilePath = path.resolve(newFolder, "en_US.json");
+const copyFilePath = path.resolve(copyFolder, "en_US.json");
 const legacyFilePath = path.resolve(legacyFolder, `en_US.csv`);
 
 // 1. Read new copy.
-console.log(`Reading ${newFilePath}.`);
+console.log(`Reading ${copyFilePath}.`);
 
-const newTranslations = JSON.parse(fs.readFileSync(newFilePath, "utf8"));
+const newTranslations = JSON.parse(fs.readFileSync(copyFilePath, "utf8"));
 
 // console.log("\n------ NEW TRANSLATIONS ------");
 // console.log(`${JSON.stringify(newTranslations, null, 2)}`);
