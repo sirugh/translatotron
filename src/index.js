@@ -10,6 +10,7 @@ const generatedFolder = "./generated/";
 const newFilePath = path.resolve(newFolder, "en_US.json");
 const legacyFilePath = path.resolve(legacyFolder, `en_US.csv`);
 
+// 1. Read new copy.
 console.log(`Reading ${newFilePath}.`);
 
 const newTranslations = JSON.parse(fs.readFileSync(newFilePath, "utf8"));
@@ -18,6 +19,7 @@ console.log("\n------ NEW TRANSLATIONS ------");
 console.log(`${JSON.stringify(newTranslations, null, 2)}`);
 console.log("------------------------------\n");
 
+// 2. Read legacy copy.
 console.log(`Reading ${legacyFilePath}.`);
 
 const legacyTranslations = {};
@@ -29,16 +31,22 @@ console.log("\n---- LEGACY TRANSLATIONS ----");
 console.log(`${JSON.stringify(legacyTranslations, null, 2)}`);
 console.log("------------------------------\n");
 
+// 3. Convert both to string:key map
 const legacyStringtoKey = {};
 Object.keys(legacyTranslations).forEach((key) => {
+  // TODO: If a string can correlate to more than one key this will need to be an array.
+  // ie { key1: 'samevalue', key2: 'samevalue'}
   legacyStringtoKey[legacyTranslations[key]] = key;
 });
 
 const newStringToKey = {};
 Object.keys(newTranslations).forEach((key) => {
+  // TODO: If a string can correlate to more than one key this will need to be an array.
+  // ie { key1: 'samevalue', key2: 'samevalue'}
   newStringToKey[newTranslations[key]] = key;
 });
 
+// 4. Generate map of legacy keys to new keys.
 const legacyKeyToNewKeyMap = {};
 Object.keys(newStringToKey).forEach((key) => {
   console.log(`Checking for legacy key for "${key}"...`);
@@ -56,8 +64,7 @@ console.log("\n---- LEGACY KEY:NEW KEY MAP ----");
 console.log(JSON.stringify(legacyKeyToNewKeyMap, null, 2));
 console.log("------------------------------\n");
 
-// Now that we have a map of keys we can use it to generate new
-// i18n assets for each existing csv.
+// 5. Generate new assets from existing csv using key map.
 fs.readdir(legacyFolder, (err, files) => {
   files.forEach((file) => {
     const generatedFilePath = path.resolve(
