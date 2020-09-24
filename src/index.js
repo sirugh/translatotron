@@ -71,6 +71,11 @@ fs.readdir(legacyFolder, (err, files) => {
       generatedFolder,
       `${file.split(".csv")[0]}.json`
     );
+    const generatedMissedStringFilePath = path.resolve(
+      generatedFolder,
+      `${file.split(".csv")[0]}_missed.json`
+    );
+
     console.log(`Generating new i18n for ${file} at ${generatedFilePath}`);
     const legacyFile = fs.readFileSync(
       path.resolve(legacyFolder, file),
@@ -97,10 +102,6 @@ fs.readdir(legacyFolder, (err, files) => {
     // TODO: Should we also write new keys without translations to the object?
     // Comment this out if you only want to see only new matching keys.
     const generatedKeys = Object.keys(generated);
-    // Iterate over new translations and add any that didn't match a legacy.
-    Object.keys(newTranslations).forEach((key) => {
-      if (!generatedKeys.includes(key)) generated[key] = newTranslations[key];
-    });
 
     fs.writeFileSync(
       generatedFilePath,
@@ -110,5 +111,22 @@ fs.readdir(legacyFolder, (err, files) => {
       }
     );
     console.log(`  Wrote ${generatedFilePath}.`);
+
+    // Iterate over new translations and add any that didn't match a legacy.
+    const missedStrings = {};
+    Object.keys(newTranslations).forEach((key) => {
+      if (!generatedKeys.includes(key)) {
+        missedStrings[key] = newTranslations[key];
+      }
+    });
+
+    fs.writeFileSync(
+      generatedMissedStringFilePath,
+      JSON.stringify(missedStrings, null, 2),
+      (err) => {
+        if (err) throw err;
+      }
+    );
+    console.log(`  Wrote ${generatedMissedStringFilePath}.`);
   });
 });
