@@ -41,19 +41,20 @@ After an initial pass, using [PWA Studio's i18n/en_US.json](https://github.com/m
 
 ```json
 {
-  "wishlistItem.addToCart": "In Winkelwagen",
-  "accountMenu.accountInfoLink": "Accountgegevens",
-  "searchTrigger.label": "Zoek",
-  "Sign Out": "Uitloggen",
-  "accountMenu.communicationsLink": "Communicatie",
-  "accountTrigger.signIn": "Inloggen",
+  "About Us": "Over ons",
   "Contact Us": "Neem contact met ons op",
-  "accountMenu.addressBookLink": "Adresboek",
+  "Copyright © 2013-present Magento, Inc. All rights reserved.": "Copyright © 2013-heden Magento. Alle rechten voorbehouden.",
   "Order Status": "Bestelling Status",
   "Returns": "Retouren",
+  "Sign Out": "Uitloggen",
+  "accountMenu.accountInfoLink": "Accountgegevens",
+  "accountMenu.addressBookLink": "Adresboek",
+  "accountMenu.communicationsLink": "Communicatie",
   "accountMenu.orderHistoryLink": "Bestelgeschiedenis",
-  "Copyright © 2013-present Magento, Inc. All rights reserved.": "Copyright © 2013-heden Magento. Alle rechten voorbehouden.",
-  "About Us": "Over ons"
+  "accountTrigger.signIn": "Inloggen",
+  "otherComponent.addToCart": "In Winkelwagen",
+  "searchTrigger.label": "Zoek",
+  "wishlistItem.addToCart": "In Winkelwagen"
 }
 ```
 
@@ -61,7 +62,24 @@ and `nl_NL_missed.json`, which are PWA Studio keys/strings that did not match a 
 
 ```json
 {
+  " in {label}": " in {label}",
   "Account": "Account",
+  "Email Signup": "Email Signup",
+  "Follow Us!": "Follow Us!",
+  "Give Back": "Give Back",
+  "Help": "Help",
+  "Hi, {name}": "Hi, {name}",
+  "Live Chat": "Live Chat",
+  "Lorem ipsum dolor sit amet, consectetur adipsicing elit, sed do eiusmod tempor incididunt ut labore et dolore.": "Lorem ipsum dolor sit amet, consectetur adipsicing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+  "Our Story": "Our Story",
+  "Privacy Policy": "Privacy Policy",
+  "Product Suggestions": "Product Suggestions",
+  "Register": "Register",
+  "Terms of Use": "Terms of Use",
+  "Toggle navigation panel": "Toggle navigation panel",
+  "accountMenu.favoritesListsLink": "Favorites Lists",
+  "accountMenu.savedPaymentsLink": "Saved Payments",
+  "accountMenu.storeCreditLink": "Store Credit & Gift Cards",
   "accountTrigger.ariaLabel": "Toggle My Account Menu",
   "autocomplete.emptyResult": "No results were found.",
   "autocomplete.error": "An error occurred while fetching results.",
@@ -69,28 +87,11 @@ and `nl_NL_missed.json`, which are PWA Studio keys/strings that did not match a 
   "autocomplete.prompt": "Search for a product",
   "autocomplete.resultSummary": "{resultCount} items",
   "cartTrigger.ariaLabel": "Toggle mini cart. You have {count} items in your cart.",
-  "Email Signup": "Email Signup",
-  "Follow Us!": "Follow Us!",
-  "Give Back": "Give Back",
-  "Help": "Help",
-  "Hi, {name}": "Hi, {name}",
-  "Live Chat": "Live Chat",
   "logo.title": "Venia",
-  "Lorem ipsum dolor sit amet, consectetur adipsicing elit, sed do eiusmod tempor incididunt ut labore et dolore.": "Lorem ipsum dolor sit amet, consectetur adipsicing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
   "navigationTrigger.ariaLabel": "Toggle navigation panel",
-  "Our Story": "Our Story",
-  "Privacy Policy": "Privacy Policy",
-  "Product Suggestions": "Product Suggestions",
-  "Register": "Register",
   "savedPaymentsPage.addButtonText": "Add a credit card",
-  "savedPaymentsPage.title": "Saved Payments - {store_name}",
   "savedPaymentsPage.subHeading": "Credit Cards saved here will be available during checkout.",
-  "Terms of Use": "Terms of Use",
-  "Toggle navigation panel": "Toggle navigation panel",
-  " in {label}": " in {label}",
-  "accountMenu.storeCreditLink": "Store Credit & Gift Cards",
-  "accountMenu.favoritesListsLink": "Favorites Lists",
-  "accountMenu.savedPaymentsLink": "Saved Payments",
+  "savedPaymentsPage.title": "Saved Payments - {store_name}",
   "wishlistItem.addToCartError": "Something went wrong. Please refresh and try again."
 }
 ```

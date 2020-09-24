@@ -94,10 +94,13 @@ fs.readdir(legacyFolder, (err, files) => {
       }
     });
 
-    const generatedKeys = Object.keys(generated);
+    const generatedSorted = {};
+    Object.keys(generated)
+      .sort()
+      .forEach((key) => (generatedSorted[key] = generated[key]));
     fs.writeFileSync(
       generatedFilePath,
-      JSON.stringify(generated, null, 2),
+      JSON.stringify(generatedSorted, null, 2),
       (err) => {
         if (err) throw err;
       }
@@ -105,12 +108,15 @@ fs.readdir(legacyFolder, (err, files) => {
     console.log(`  Wrote ${generatedFilePath}.`);
 
     // Iterate over new translations and add any that didn't match a legacy.
+    const generatedKeys = Object.keys(generated);
     const missedStrings = {};
-    Object.keys(newTranslations).forEach((key) => {
-      if (!generatedKeys.includes(key)) {
-        missedStrings[key] = newTranslations[key];
-      }
-    });
+    Object.keys(newTranslations)
+      .sort()
+      .forEach((key) => {
+        if (!generatedKeys.includes(key)) {
+          missedStrings[key] = newTranslations[key];
+        }
+      });
 
     fs.writeFileSync(
       generatedMissedStringFilePath,
