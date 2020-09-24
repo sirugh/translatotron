@@ -87,6 +87,8 @@ fs.readdir(legacyFolder, (err, files) => {
       }
     });
 
+    // TODO: Should we also write new keys without translations to the object?
+    // Comment this out if you only want to see only new matching keys.
     const generatedKeys = Object.keys(generated);
     // Iterate over new translations and add any that didn't match a legacy.
     Object.keys(newTranslations).forEach((key) => {
