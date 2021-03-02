@@ -25,9 +25,8 @@ console.log(`Reading ${legacyFilePath}.`);
 const legacyTranslations = {};
 parse(fs.readFileSync(legacyFilePath, "utf8"), {
   columns: ["key", "value"],
-    relax_column_count: true,
-    trim: true
-
+  relax_column_count: true,
+  trim: true,
 }).forEach(({ key, value }) => (legacyTranslations[key] = value));
 
 // console.log("\n---- LEGACY TRANSLATIONS ----");
@@ -53,7 +52,7 @@ Object.keys(newTranslations).forEach((key) => {
 // 4. Generate map of legacy keys to new keys.
 const legacyKeyToNewKeyMap = {};
 Object.keys(newStringToKey).forEach((key) => {
-  const valueArray = (legacyStringtoKey[key] || []).map((value) => {
+  (legacyStringtoKey[key] || []).map((value) => {
     legacyKeyToNewKeyMap[value] = newStringToKey[key];
   });
 });
@@ -80,8 +79,8 @@ fs.readdir(legacyFolder, (err, files) => {
     );
     const legacyCsvParsed = parse(legacyFile, {
       columns: ["key", "value"],
-        relax_column_count: true,
-        trim: true
+      relax_column_count: true,
+      trim: true,
     });
 
     const generated = {};
